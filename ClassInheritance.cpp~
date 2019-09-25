@@ -1,0 +1,10 @@
+#include <iostream>
+#include <cstring>
+#include "Media.h"
+//#include "Videogame.h"
+//#include "Movie.h"
+//#include "Music.h"
+
+int main() {
+  return 0;
+}
