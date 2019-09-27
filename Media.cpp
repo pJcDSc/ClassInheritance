@@ -1,3 +1,7 @@
+#define ME 0
+#define VI 1
+#define MO 2
+#define MU 3
 #include <iostream>
 #include <cstring>
 #include "Media.h"
@@ -6,6 +10,7 @@ using namespace std;
 
 //Constructor
 Media::Media(char* title, int year) {
+  cout << "Media constructor called" << endl;
   this -> title = title;
   this -> year = year;
 }
@@ -26,6 +31,7 @@ int Media::getType() {
 }
 
 Media::~Media() {
+  cout << "Media destructor Called" << endl;
   delete[] title;
 }
 

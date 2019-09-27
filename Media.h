@@ -1,3 +1,6 @@
+#ifndef MEDIA_H
+#define MEDIA_H
+
 #include <iostream>
 #include <cstring>
 
@@ -8,7 +11,7 @@ class Media {
  public:
 
   //Constructor
-  Media(char[20], int);
+  Media(char*, int);
 
   //Get title of Media
   char* getTitle();
@@ -20,9 +23,7 @@ class Media {
   int getType();
   
   //Destructor
-  ~Media();
-
-  
+  virtual ~Media();
   
  private:
 
@@ -32,3 +33,4 @@ class Media {
   
 };  
   
+#endif

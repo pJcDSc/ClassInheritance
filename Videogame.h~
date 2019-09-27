@@ -1,0 +1,32 @@
+#define ME 0
+#define VI 1
+#define MO 2
+#define MU 3
+#include <iostream>
+#include <cstring>
+#include "Media.h"
+
+using namespace std;
+
+class Videogame : public Media{
+
+ public:
+
+  //Constructor
+  Videogame(char[20], int);
+
+  //Override getType
+  int getType();
+
+  //Get publisher
+  char[20] getPublisher();
+  
+  //Get rating
+  int getRating();
+
+  //Destructor
+  ~
+
+  
+
+
