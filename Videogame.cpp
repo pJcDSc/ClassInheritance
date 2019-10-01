@@ -27,6 +27,7 @@ int Videogame::getType() {
   return 1;
 }
 
+//Destructor
 Videogame::~Videogame() {
   cout << "Videogame destructor called" << endl;
   delete publisher;

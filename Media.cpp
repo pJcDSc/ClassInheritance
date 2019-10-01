@@ -27,7 +27,7 @@ int Media::getYear() {
 
 //Get type of media
 int Media::getType() {
-  return type;
+  //To be overriden by children classes
 }
 
 Media::~Media() {
