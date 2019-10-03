@@ -68,13 +68,7 @@ bool parse (char* input, vector<Media*>* v) {
 
 void add (vector<Media*>* v) {
   cout << "Add function enter" << endl;
-  char* b = new char[20];
-  strcpy(b, "Hello");
-  char* c = new char[20];
-  strcpy(c, "World!");
-  Videogame* a = new Videogame(b, 2019, c, 69);
-  cout << (a->getPublisher()) << (a->getRating()) << (a->getType()) << (a->getTitle()) << (a->getYear()) << endl;
-  delete a;
+  
 }
 
 void del (vector<Media*>* v) {

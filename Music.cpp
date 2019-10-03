@@ -19,7 +19,7 @@ char* Music::getPublisher() {
 }
 
 //Get artist
-char* Music::getArtsit() {
+char* Music::getArtist() {
   return artist;
 }
 
