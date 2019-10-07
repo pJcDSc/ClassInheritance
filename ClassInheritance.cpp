@@ -16,6 +16,9 @@ void add (vector <Media*>*);
 void search (vector <Media*>*);
 void del (vector <Media*>*);
 void quit ();
+void addMovie(vector <Media*>*);
+void addVideogame(vector <Media*>*);
+void addMusic(vector <Media*>*);
 
 using namespace std;
 
@@ -68,13 +71,25 @@ bool parse (char* input, vector<Media*>* v) {
 
 void add (vector<Media*>* v) {
   cout << "Add function enter" << endl;
-  char* b = new char[20];
-  strcpy(b, "Hello");
-  char* c = new char[20];
-  strcpy(c, "World!");
-  Videogame* a = new Videogame(b, 2019, c, 69);
-  cout << (a->getPublisher()) << (a->getRating()) << (a->getType()) << (a->getTitle()) << (a->getYear()) << endl;
-  delete a;
+  cout << "Type \"1\" for Videogame, \"2\" for Movie, and \"3\" for Music." << endl;
+
+  bool accept = false;
+  int type = 0;
+  while(!accept){
+    cin >> type;
+    cin.clear();
+    cin.ignore(999, '\n');
+    
+    if (type > 3 || type < 1) {
+      cout << "Please enter \"1\", \"2\", or \"3\"." << endl;
+    } else accept = true;
+  }
+
+  switch (type) {
+    case(1):
+      addVideogame(v);
+      break;
+  }
 }
 
 void del (vector<Media*>* v) {
@@ -91,4 +106,27 @@ void printHelp() {
 
 void quit() {
   cout << "Quit function enter" << endl;
+}
+
+void addVideogame(vector <Media*>* v){
+  char title[60];
+  int year;
+  char publisher[40];
+  int rating;
+  cout << "Please enter title" << endl;
+  cin.get(title, 60);
+  cin.get();
+  cout << "Please enter year" << endl;
+  cin >> year;
+  cin.clear();
+  cin.ignore(999, '\n');
+  cout << "Please enter the publisher" << endl;
+  cin.get(publisher, 40);
+  cin.get();
+  cout << "Please enter the rating" << endl;
+  cin >> rating;
+  cin.clear();
+  cin.ignore(999, '\n');
+  v -> push_back(new Videogame(title, year, publisher, rating));
+  return;
 }
