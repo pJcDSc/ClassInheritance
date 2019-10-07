@@ -89,6 +89,7 @@ void add (vector<Media*>* v) {
     case(1):
       addVideogame(v);
       break;
+   
   }
 }
 
