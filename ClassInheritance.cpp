@@ -20,6 +20,7 @@ void quit ();
 void addMovie(vector <Media*>*);
 void addVideogame(vector <Media*>*);
 void addMusic(vector <Media*>*);
+void printMedia(Media*);
 
 using namespace std;
 
@@ -129,22 +130,13 @@ void search (vector<Media*>* v) {
   cin.clear();
   cin.ignore();
   
-  vector<Media*>::iterator it;
-
-  cout << "Got here" << endl;
+  vector<Media*>::iterator it = v -> begin();
   
   while (it != v -> end()){
-    cout << "Getting there" << endl;
-    // if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0) {
-    //cout << "Mathced:!" << endl;
-    // }
-    cout << "Here" << endl;
-    cout << (mode == 'y') << endl;
-    cout << "There" << endl;
-    cout << v -> at(0) -> getYear() << endl;
-    cout << ((*it) -> getYear() == 5/*strToInt(search)*/) << endl;
-    cout << (mode == 't') << endl;
-    cout << (strcmp((*it)->getTitle(), search) == 0) << endl;
+    if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0) {
+      printMedia(*it);
+    }
+    ++it;
   }
 }
 
@@ -161,9 +153,9 @@ void quit() {
 }
 
 void addVideogame(vector <Media*>* v){
-  char title[60];
+  char* title = new char[60];
   int year;
-  char publisher[40];
+  char* publisher = new char[40];
   int rating;
   cout << "Please enter title" << endl;
   cin.get(title, 60);
@@ -185,9 +177,9 @@ void addVideogame(vector <Media*>* v){
 }
 
 void addMovie(vector <Media*>* v) {
-  char title[60];
+  char* title = new char[60];
   int year;
-  char director[40];
+  char* director = new char[40];
   int duration;
   int rating;
   cout << "Please enter the title" << endl;
@@ -213,10 +205,10 @@ void addMovie(vector <Media*>* v) {
 }
 
 void addMusic(vector <Media*>* v) {
-  char title[60];
+  char* title = new char[60];
   int year;
-  char artist[40];
-  char publisher[40];
+  char* artist = new char[40];
+  char* publisher = new char[40];
   int duration;
   cout << "Please enter the title" << endl;
   cin.get(title, 60);
@@ -246,4 +238,38 @@ int strToInt(char* c) {
     total += c[i] - '0';
   }
   return total;
+}
+
+void printMedia(Media* m) {
+  switch(m -> getType()) {
+    case(VI):
+      {
+      Videogame* v = (Videogame*)(m);
+      cout << "Videogame: \"" << v -> getTitle() << "\"" << endl;
+      cout << "Year: " << v -> getYear() << endl;
+      cout << "Publisher: " << v -> getPublisher() << endl;
+      cout << "Rating: " << v -> getRating() << endl << endl;;
+      break;
+      }
+    case(MO):
+      {
+      Movie* mo = (Movie*)(m);
+      cout << "Movie: \"" << mo -> getTitle() << "\"" << endl;
+      cout << "Year: " << mo -> getYear() << endl;
+      cout << "Director: " << mo -> getDirector() << endl;
+      cout << "Duration: " << mo -> getDuration() << endl;
+      cout << "Rating: " << mo -> getRating() << endl << endl;
+      break;
+      }
+    case(MU):
+      {
+      Music* mu = (Music*)(m);
+      cout << "Music: \"" << mu -> getTitle() << "\"" << endl;
+      cout << "Year: " << mu -> getYear() << endl;
+      cout << "Artist: " << mu -> getArtist() << endl;
+      cout << "Publisher: " << mu -> getPublisher() << endl;
+      cout << "Duration: " << mu -> getDuration() << endl << endl;
+      break;
+      }
+  }
 }

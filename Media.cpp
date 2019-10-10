@@ -22,7 +22,6 @@ char* Media::getTitle() {
 
 //Get year
 int Media::getYear() {
-  cout << "Media get year" << endl;
   return year;
 }
 

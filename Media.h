@@ -20,7 +20,7 @@ class Media {
   int getYear();
 
   //Get type of Media
-  int getType();
+  virtual int getType();
   
   //Destructor
   virtual ~Media();
