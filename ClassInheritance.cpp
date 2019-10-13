@@ -49,24 +49,24 @@ int main() {
 }
 
 bool parse (char* input, vector<Media*>* v) {
-  cout << "Parse called" << endl;
+  //cout << "Parse called" << endl;
   for (int i = 0; i < strlen(input); i++){
     input[i] = toupper(input[i]);
   }
-  if (strcmp("H", input) == 0 || strcmp("h", input) == 0) {
-    cout << "Help Call" << endl;
+  if (strcmp("H", input) == 0 || strcmp("HELP", input) == 0) {
+    //cout << "Help Call" << endl;
     printHelp();
   } else if (strcmp("ADD", input) == 0) {
-    cout << "Add Call" << endl;
+    //cout << "Add Call" << endl;
     add (v);
   } else if (strcmp("DELETE", input) == 0) {
-    cout << "Delete Call" << endl;
+    //cout << "Delete Call" << endl;
     del (v);
   } else if (strcmp("SEARCH", input) == 0) {
-    cout << "Search Call" << endl;
+    //cout << "Search Call" << endl;
     search(v);
   } else if (strcmp("QUIT", input) == 0) {
-    cout << "Quit Call" << endl;
+    //cout << "Quit Call" << endl;
     quit();
     return false;
   } else {
@@ -75,7 +75,7 @@ bool parse (char* input, vector<Media*>* v) {
   return true;
 }
 void add (vector<Media*>* v) {
-  cout << "Add function enter" << endl;
+  //cout << "Add function enter" << endl;
   cout << "Type \"1\" for Videogame, \"2\" for Movie, and \"3\" for Music." << endl;
 
   bool accept = false;
@@ -104,11 +104,8 @@ void add (vector<Media*>* v) {
 }
 
 void del (vector<Media*>* v) {
-  cout << "Del function enter" << endl;
-}
-
-void search (vector<Media*>* v) {
-  cout << "Search by Year or Title? (y/t)" << endl;
+  //cout << "Del function enter" << endl;
+  cout << "Delete by Year or Title, or delete all? (y/t/a)" << endl;
 
   char mode = ' ';
   bool accepted = false;
@@ -117,26 +114,113 @@ void search (vector<Media*>* v) {
     cin.clear();
     cin.ignore(999, '\n');
 
-    if (mode == 'y' || mode == 't') {
+    if (mode == 'y' || mode == 't' || mode == 'a') {
       accepted = true;
     } else {
-      cout << "Please enter either 'y' or 't'" << endl;
+      cout << "Please enter either 'y', 't' or 'a'" << endl;
     }
   }
 
-  cout << "Please enter the search term." << endl;
   char search[80] = "";
-  cin.get(search, 80);
-  cin.clear();
-  cin.ignore();
-  
+  if (mode != 'a') {
+    cout << "Please enter the deletion search term." << endl;
+    cin.get(search, 80);
+    cin.clear();
+    cin.ignore();
+  }
+
+  bool anyFound = false;
   vector<Media*>::iterator it = v -> begin();
-  
   while (it != v -> end()){
-    if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0) {
+    if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0 || mode == 'a') {
+      if(!anyFound) {
+	anyFound = true;
+	cout << endl << "These medias were found:" << endl << endl;
+      }
       printMedia(*it);
     }
     ++it;
+  }
+  if(!anyFound) {
+    cout << "No medias were found matching the search term." << endl;
+    return;
+  }
+  cout << "Delete these medias? (y/n)" << endl;
+
+  char answer = ' ';
+  accepted = false;
+  while (!accepted) {
+    cin >> answer;
+    cin.clear();
+    cin.ignore(999, '\n');
+
+    if (answer == 'n' || answer == 'y') {
+      accepted = true;
+    } else {
+      cout << "Please enter either 'y' or 'n'" << endl;
+    }
+  }
+
+  if (answer == 'n') {
+    cout << "Deletion canceled." << endl;
+    return;
+  } else {
+    int delCount = 0;
+    cout << "Deleting..." << endl;
+    it = v -> begin();
+    while (it != v -> end()){
+      if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0 || mode == 'a') {
+	delete *it;
+	it = v -> erase(it);
+	++delCount;
+      } else {
+	++it;
+      }
+    }
+    cout << "Succesfully deleted " << delCount << " media(s)." << endl; 
+  }
+
+}
+
+void search (vector<Media*>* v) {
+  cout << "Search by Year or Title, or print all? (y/t/a)" << endl;
+
+  char mode = ' ';
+  bool accepted = false;
+  while(!accepted) {
+    cin >> mode;
+    cin.clear();
+    cin.ignore(999, '\n');
+
+    if (mode == 'y' || mode == 't' || mode == 'a') {
+      accepted = true;
+    } else {
+      cout << "Please enter either 'y', 't' or 'a'" << endl;
+    }
+  }
+
+  char search[80] = "";
+  if (mode != 'a') {
+    cout << "Please enter the search term." << endl;
+    cin.get(search, 80);
+    cin.clear();
+    cin.ignore();
+  }
+
+  bool anyFound = false;
+  vector<Media*>::iterator it = v -> begin();
+  while (it != v -> end()){
+    if (mode == 'y' && (*it) -> getYear() == strToInt(search) || mode == 't' && strcmp((*it)->getTitle(), search) == 0 || mode == 'a') {
+      if(!anyFound) {
+	anyFound = true;
+	cout << endl << "These medias were found:" << endl << endl;
+      }
+      printMedia(*it);
+    }
+    ++it;
+  }
+  if(!anyFound) {
+    cout << "No medias were found matching the search term." << endl;
   }
 }
 
