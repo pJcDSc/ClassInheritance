@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Media parent class
+*/
+
 #define ME 0
 #define VI 1
 #define MO 2
@@ -10,7 +16,6 @@ using namespace std;
 
 //Constructor
 Media::Media(char* title, int year) {
-  cout << "Media constructor called" << endl;
   this -> title = title;
   this -> year = year;
 }
@@ -30,8 +35,8 @@ int Media::getType() {
   //To be overriden by children classes
 }
 
+//Destructor 
 Media::~Media() {
-  cout << "Media destructor Called" << endl;
   delete[] title;
 }
 

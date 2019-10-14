@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Movie child class of media
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Media.h"
@@ -7,7 +13,6 @@ using namespace std;
 
 //Constructor
 Movie::Movie(char* title, int year, char* director, int duration, int rating) : Media(title, year) {
-  cout << "Movie constructor called" << endl;
   this -> director = director;
   this -> rating = rating;
   this -> duration = duration;
@@ -36,6 +41,5 @@ int Movie::getType() {
 
 //Destructor
 Movie::~Movie() {
-  cout << "Movie destructor called" << endl;
   delete director;
 }

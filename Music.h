@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Music header child class of Media
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Media.h"

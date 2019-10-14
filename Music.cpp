@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Music child class of Media
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Media.h"
@@ -7,7 +13,6 @@ using namespace std;
 
 //Constructor
 Music::Music(char* title, int year, char* artist, char* publisher, int duration) : Media(title, year) {
-  cout << "Music constructor called" << endl;
   this -> artist = artist;
   this -> publisher = publisher;
   this -> duration = duration;
@@ -35,7 +40,6 @@ int Music::getType() {
 
 //Destructor
 Music::~Music() {
-  cout << "Music deconstructor called" << endl;
   delete artist;
   delete publisher;
 }

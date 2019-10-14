@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Movie header child class of media
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Media.h"

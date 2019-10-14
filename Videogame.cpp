@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Videogame child class of Media
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Media.h"
@@ -7,7 +13,6 @@ using namespace std;
 
 //Constructor
 Videogame::Videogame(char* title, int year, char* publisher, int rating) : Media(title, year) {
-  cout << "Videogame constructor called" << endl;
   this -> publisher = publisher;
   this -> rating = rating;
 }
@@ -29,6 +34,5 @@ int Videogame::getType() {
 
 //Destructor
 Videogame::~Videogame() {
-  cout << "Videogame destructor called" << endl;
   delete publisher;
 }

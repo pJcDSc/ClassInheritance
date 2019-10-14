@@ -1,3 +1,9 @@
+/*
+Author: Peter Jin
+Date: 10/14/19
+Media parent class header
+*/
+
 #ifndef MEDIA_H
 #define MEDIA_H
 
